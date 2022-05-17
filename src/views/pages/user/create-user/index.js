@@ -1,12 +1,15 @@
 // material-ui
+import { useMutation } from '@apollo/client';
 import { LoadingButton } from '@mui/lab';
 import { Box } from '@mui/material';
+import { CREATE_USER } from 'apollo/mutation/user_mutation';
 import { Form, Formik } from 'formik';
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
 import { InputField } from 'ui-component/input/InputField';
 
 const UserCreatePage = () => {
+  const [createUser] = useMutation(CREATE_USER);
   return (
     <MainCard title="Create User">
       <Formik
@@ -17,21 +20,21 @@ const UserCreatePage = () => {
           phone: '',
         }}
         onSubmit={async values => {
-          // const { errors } = await createUser({
-          //   variables: { input: values },
-          //   update: cache => {
-          //     cache.evict({ fieldName: 'User' });
-          //   },
-          // });
+          const { errors } = await createUser({
+            variables: { input: values },
+            update: cache => {
+              cache.evict({ fieldName: 'User' });
+            },
+          });
           values.firstName = '';
           values.lastName = '';
           values.email = '';
           values.phone = '';
-          // if (!errors) {
-          //   console.log('success');
-          // } else {
-          //   console.log(errors);
-          // }
+          if (!errors) {
+            console.log('success');
+          } else {
+            console.log(errors);
+          }
         }}
       >
         {({ isSubmitting, handleChange, values }) => (
