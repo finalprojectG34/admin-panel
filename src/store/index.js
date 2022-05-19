@@ -1,9 +1,11 @@
-import { createStore } from 'redux';
-import reducer from './reducer';
+import { applyMiddleware, createStore } from 'redux';
+import thunk from 'redux-thunk';
 
+import reducer from './reducer';
 // ==============================|| REDUX - MAIN STORE ||============================== //
 
-const store = createStore(reducer);
+const initialState = {};
+const store = createStore(reducer, initialState, applyMiddleware(thunk));
 const persister = 'Free';
 
 export { store, persister };

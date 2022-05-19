@@ -9,7 +9,6 @@ import AuthWrapper1 from '../AuthWrapper1';
 import AuthCardWrapper from '../AuthCardWrapper';
 import Logo from 'ui-component/Logo';
 import AuthRegister from '../auth-forms/AuthRegister';
-import AuthFooter from 'ui-component/cards/AuthFooter';
 
 // assets
 
@@ -70,7 +69,7 @@ const Register = () => {
                                         <Grid item container direction='column' alignItems='center' xs={12}>
                                             <Typography
                                                 component={Link}
-                                                to='/pages/login/login3'
+                                                to='/login'
                                                 variant='subtitle1'
                                                 sx={{ textDecoration: 'none' }}
                                             >
@@ -82,9 +81,6 @@ const Register = () => {
                             </AuthCardWrapper>
                         </Grid>
                     </Grid>
-                </Grid>
-                <Grid item xs={12} sx={{ m: 3, mt: 1 }}>
-                    <AuthFooter />
                 </Grid>
             </Grid>
         </AuthWrapper1>
