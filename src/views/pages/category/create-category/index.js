@@ -1,23 +1,75 @@
 // material-ui
-import { Typography } from '@mui/material';
-
+import { LoadingButton } from '@mui/lab';
+import { Box } from '@mui/material';
+import { Form, Formik } from 'formik';
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
+import { InputField } from 'ui-component/input/InputField';
 
 // ==============================|| SAMPLE PAGE ||============================== //
 
 const CategoryCreatePage = () => (
-    <MainCard title='Sample Card'>
-        <Typography variant='body2'>
-            Lorem ipsum dolor sit amen, consenter nipissing eli, sed do elusion tempos incident ut laborers et doolie
-            magna alissa. Ut enif
-            ad minim venice, quin nostrum exercitation illampu laborings nisi ut liquid ex ea commons construal. Duos
-            aube grue dolor in
-            reprehended in voltage veil esse colum doolie eu fujian bulla parian. Exceptive sin ocean cuspidate non
-            president, sunk in culpa
-            qui officiate descent molls anim id est labours.
-        </Typography>
-    </MainCard>
+  <MainCard title="Create Category">
+    <Formik
+      initialValues={{
+        name: '',
+        image: '',
+        description: '',
+      }}
+      onSubmit={async values => {
+        console.log(values);
+        //   const { errors } = await createCategory({
+        //     variables: { input: values },
+        //     update: (cache: ApolloCache<any>) => {
+        //       cache.evict({ fieldName: 'Category' });
+        //     },
+        //   });
+        //   if (!errors) {
+        //     router.push('/category/list-category');
+        //   }
+        //   console.log(errors);
+      }}
+    >
+      {({ isSubmitting, handleChange, values }) => (
+        <Box sx={{ margin: 'auto' }} style={{ width: 'max-content' }}>
+          <Form>
+            <InputField
+              label="Name"
+              name="name"
+              placeholder="Name"
+              value={values.name}
+              onChange={handleChange}
+            />
+
+            <InputField
+              label="Description"
+              name="description"
+              placeholder="Description"
+              value={values.description}
+              onChange={handleChange}
+            />
+            <InputField
+              label="Image"
+              name="image"
+              placeholder="Image"
+              value={values.image}
+              onChange={handleChange}
+            />
+
+            <Box textAlign={'center'} mt={2}>
+              <LoadingButton
+                type="submit"
+                variant="contained"
+                loading={isSubmitting}
+              >
+                create Category
+              </LoadingButton>
+            </Box>
+          </Form>
+        </Box>
+      )}
+    </Formik>
+  </MainCard>
 );
 
 export default CategoryCreatePage;
