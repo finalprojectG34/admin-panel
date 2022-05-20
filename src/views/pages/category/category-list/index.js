@@ -8,22 +8,33 @@ import {
   TableHead,
   TableRow,
   Typography,
+  Alert,
 } from '@mui/material';
 import { HighlightOffOutlined } from '@mui/icons-material';
 
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
-import { category } from 'mock/category-mock';
+import { useQuery, useMutation } from '@apollo/client';
+import { GET_ALL_CATEGORIES } from '../../../../apollo/query/category_queries';
+import { DELETE_CATEGORY } from '../../../../apollo/mutation/category_mutation';
+import Loader from '../../../../ui-component/Loader';
 
 // ==============================|| SAMPLE PAGE ||============================== //
 
-const CategoryListPage = () => (
-  <MainCard title="Sample Card">
-    <Typography variant="body2">
-      <>
-        <Typography variant="h6" textAlign={'center'} mb={2}>
-          List of Categories
-        </Typography>
+const CategoryListPage = () => {
+  const { data, error, loading } = useQuery(GET_ALL_CATEGORIES);
+  const [deleteCategory] = useMutation(DELETE_CATEGORY);
+
+  if (error)
+    return (
+      <Alert variant="outlined" severity="error">
+        {error}
+      </Alert>
+    );
+  if (loading) return <Loader />;
+  return (
+    <MainCard title="Categories List">
+      <Typography variant="body2">
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650, bgcolor: '#00000021' }}>
             <TableHead>
@@ -35,7 +46,7 @@ const CategoryListPage = () => (
               </TableRow>
             </TableHead>
             <TableBody>
-              {category?.map((category, index) =>
+              {data.getAllCategories?.map((category, index) =>
                 !category ? null : (
                   <TableRow
                     key={category.id}
@@ -51,16 +62,16 @@ const CategoryListPage = () => (
                       <HighlightOffOutlined
                         color="error"
                         sx={{ cursor: 'pointer' }}
-                        //   onClick={() => {
-                        //     deleteCategory({
-                        //       variables: {
-                        //         deleteCategoryId: category.id as string,
-                        //       },
-                        //       update: cache => {
-                        //         cache.evict({ id: 'Category:' + category.id });
-                        //       },
-                        //     });
-                        //   }}
+                        onClick={() => {
+                          deleteCategory({
+                            variables: {
+                              deleteCategoryId: category.id,
+                            },
+                            update: cache => {
+                              cache.evict({ id: 'Category:' + category.id });
+                            },
+                          });
+                        }}
                       />
                     </TableCell>
                   </TableRow>
@@ -69,9 +80,9 @@ const CategoryListPage = () => (
             </TableBody>
           </Table>
         </TableContainer>
-      </>
-    </Typography>
-  </MainCard>
-);
+      </Typography>
+    </MainCard>
+  );
+};
 
 export default CategoryListPage;
