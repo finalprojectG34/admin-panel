@@ -1,6 +1,7 @@
 // project imports
 import MainLayout from 'layout/MainLayout';
 
+import { Navigate } from 'react-router';
 // dashboard routing
 import DashboardDefault from 'views/dashboard/Default';
 
@@ -9,8 +10,19 @@ import CategoryCreatePage from '../views/pages/category/create-category';
 import CategoryListPage from '../views/pages/category/category-list';
 import UserCreatePage from '../views/pages/user/create-user';
 import UserListPage from '../views/pages/user/user-list';
+import ProtectedRoute from '../ui-component/protected-route/protected-route';
+import CompanyCreatePage from '../views/pages/company/create-company';
+import CompanyListPage from '../views/pages/company/company-list';
 
 // ==============================|| MAIN ROUTING ||============================== //
+
+const RootApp = () => {
+    // const [data] = useLocalStorage('store', null);
+    // if (!data) {
+    return <Navigate to='/dashboard' />;
+    // }
+    // return <Navigate to='/login' />;
+};
 
 const MainRoutes = {
     path: '/',
@@ -18,27 +30,63 @@ const MainRoutes = {
     children: [
         {
             path: '/',
-            element: <DashboardDefault />
+            element: <RootApp />
         },
         {
-            path: '/dashboard/default',
-            element: <DashboardDefault />
+            path: '/dashboard',
+            element: (
+                <ProtectedRoute exact path='/dashboard'>
+                    <DashboardDefault />
+                </ProtectedRoute>
+            )
         },
         {
             path: '/category/create',
-            element: <CategoryCreatePage />
+            element: (
+                <ProtectedRoute exact path='/category/create'>
+                    <CategoryCreatePage />
+                </ProtectedRoute>
+            )
         },
         {
             path: '/category/list',
-            element: <CategoryListPage />
+            element: (
+                <ProtectedRoute exact path='/category/list'>
+                    <CategoryListPage />
+                </ProtectedRoute>
+            )
         },
         {
             path: '/user/create',
-            element: <UserCreatePage />
+            element: (
+                <ProtectedRoute exact path='/user/create'>
+                    <UserCreatePage />
+                </ProtectedRoute>
+            )
         },
         {
             path: '/user/list',
-            element: <UserListPage />
+            element: (
+                <ProtectedRoute exact path='/user/list'>
+                    <UserListPage />
+                </ProtectedRoute>
+            )
+        },
+        {
+            path: '/company/create',
+            element: (
+                <ProtectedRoute exact path='/company/create'>
+                    <CompanyCreatePage />
+                </ProtectedRoute>
+            )
+        },
+        {
+            path: '/company/list',
+            element: (
+                <ProtectedRoute exact path='/company/list'>
+                    <CompanyListPage />
+                </ProtectedRoute>
+            )
         }
     ]
 };
