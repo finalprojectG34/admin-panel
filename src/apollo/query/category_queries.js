@@ -17,8 +17,8 @@ export const GET_ALL_CATEGORIES = gql`
 `;
 
 export const GET_ONE_CATEGORY = gql`
-  query ($id: String!) {
-    getAllCategories(id: $id) {
+  query ($getOneCategoryId: String!) {
+    getOneCategory(id: $getOneCategoryId) {
       id
       description
       facets
