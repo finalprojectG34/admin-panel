@@ -13,19 +13,19 @@ import { CREATE_CATEGORY } from '../../../../apollo/mutation/category_mutation';
 const CategoryCreatePage = () => {
   const [createCategory] = useMutation(CREATE_CATEGORY);
   return (
-    <MainCard title="Create Category">
+    <MainCard title='Create Category'>
       <Formik
         initialValues={{
           name: '',
           image: '',
-          description: '',
+          description: ''
         }}
         onSubmit={async values => {
           const { errors } = await createCategory({
             variables: { input: values },
             update: cache => {
               cache.evict({ fieldName: 'Category' });
-            },
+            }
           });
           values.description = '';
           values.image = '';
@@ -41,35 +41,37 @@ const CategoryCreatePage = () => {
           <Box sx={{ margin: 'auto' }} style={{ width: 'max-content' }}>
             <Form>
               <InputField
-                label="Name"
-                name="name"
-                placeholder="Name"
+                label='Name'
+                name='name'
+                placeholder='Name'
                 value={values.name}
                 onChange={handleChange}
+                dataCy='category-name-input'
               />
-
               <InputField
-                label="Description"
-                name="description"
-                placeholder="Description"
+                label='Description'
+                name='description'
+                placeholder='Description'
                 value={values.description}
                 onChange={handleChange}
+                dataCy='category-description-input'
               />
               <InputField
-                label="Image"
-                name="image"
-                placeholder="Image"
+                label='Image'
+                name='image'
+                placeholder='Image'
                 value={values.image}
                 onChange={handleChange}
+                dataCy='category-image-input'
               />
-
               <Box textAlign={'center'} mt={2}>
                 <LoadingButton
-                  type="submit"
-                  variant="contained"
+                  type='submit'
+                  variant='contained'
                   loading={isSubmitting}
+                  data-cy='create-category-button'
                 >
-                  create Category
+                  Create Category
                 </LoadingButton>
               </Box>
             </Form>

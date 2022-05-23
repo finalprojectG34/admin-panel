@@ -44,7 +44,8 @@
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
-        "eject": "react-scripts eject"
+        "eject": "react-scripts eject",
+        "cypress:open": "cypress open"
     },
     "eslintConfig": {
         "extends": [
@@ -71,6 +72,7 @@
     "devDependencies": {
         "@babel/core": "^7.14.8",
         "@babel/eslint-parser": "^7.15.8",
+        "cypress": "^9.6.1",
         "sass": "^1.42.1"
     }
 }
