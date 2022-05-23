@@ -22,25 +22,25 @@ const users = {
           title: 'Create User',
           type: 'item',
           url: '/user/create',
-          breadcrumbs: false,
+          breadcrumbs: false
         },
         {
           id: 'material-icons',
           title: 'Users List',
           type: 'item',
           url: '/user/list',
-          breadcrumbs: false,
+          breadcrumbs: false
         },
         {
           id: 'material-icons',
           title: 'User Search',
           type: 'item',
           url: '/user/search',
-          breadcrumbs: false,
-        },
-      ],
-    },
-  ],
+          breadcrumbs: false
+        }
+      ]
+    }
+  ]
 };
 
 export default users;

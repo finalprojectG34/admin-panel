@@ -1,17 +1,17 @@
 // material-ui
 import {
+  Alert,
+  Box,
   Button,
+  Card,
+  CardContent,
   FormControl,
   FormControlLabel,
   FormLabel,
   Radio,
   RadioGroup,
   TextField,
-  Typography,
-  Box,
-  Alert,
-  Card,
-  CardContent,
+  Typography
 } from '@mui/material';
 
 // project imports
@@ -34,49 +34,49 @@ const CategorySearchPage = () => {
   };
   if (error)
     return (
-      <Alert variant="outlined" severity="error">
+      <Alert variant='outlined' severity='error'>
         {error}
       </Alert>
     );
   if (loading) return <Loader />;
   return (
-    <MainCard title="Search Category">
-      <Typography variant="body2">
+    <MainCard title='Search Category'>
+      <Typography variant='body2'>
         <Box>
           <Box mb={4}>
-            <FormControl component="fieldset">
-              <FormLabel component="legend">Search By</FormLabel>
+            <FormControl component='fieldset'>
+              <FormLabel component='legend'>Search By</FormLabel>
               <RadioGroup
-                aria-label="Search By"
-                defaultValue="id"
-                name="radio-buttons-group"
+                aria-label='Search By'
+                defaultValue='id'
+                name='radio-buttons-group'
                 value={value}
                 onChange={handleChange}
               >
-                <FormControlLabel value="id" control={<Radio />} label="Id" />
+                <FormControlLabel value='id' control={<Radio />} label='Id' />
                 <FormControlLabel
-                  value="name"
+                  value='name'
                   control={<Radio />}
-                  label="Name"
+                  label='Name'
                 />
               </RadioGroup>
             </FormControl>
             <Box sx={{ display: 'flex' }}>
               <TextField
                 label={value}
-                variant="standard"
+                variant='standard'
                 value={text}
                 onChange={e => setText(e.target.value)}
                 sx={{ mr: 2 }}
               />
 
               <Button
-                variant="outlined"
+                variant='outlined'
                 onClick={() => {
                   getCategory({
                     variables: {
-                      getOneCategoryId: text,
-                    },
+                      getOneCategoryId: text
+                    }
                   });
                 }}
               >

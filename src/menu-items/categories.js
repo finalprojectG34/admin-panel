@@ -1,17 +1,12 @@
 // assets
-import {
-  IconPalette,
-  IconShadow,
-  IconTypography,
-  IconWindmill,
-} from '@tabler/icons';
+import { IconPalette, IconShadow, IconTypography, IconWindmill } from '@tabler/icons';
 
 // constant
 const icons = {
   IconTypography,
   IconPalette,
   IconShadow,
-  IconWindmill,
+  IconWindmill
 };
 
 // ==============================|| UTILITIES MENU ITEMS ||============================== //
@@ -32,25 +27,25 @@ const categories = {
           title: 'Create Category',
           type: 'item',
           url: '/category/create',
-          breadcrumbs: false,
+          breadcrumbs: false
         },
         {
           id: 'material-icons',
           title: 'Categories List',
           type: 'item',
           url: '/category/list',
-          breadcrumbs: false,
+          breadcrumbs: false
         },
         {
           id: 'material-icons',
           title: 'Search Category',
           type: 'item',
           url: '/category/search',
-          breadcrumbs: false,
-        },
-      ],
-    },
-  ],
+          breadcrumbs: false
+        }
+      ]
+    }
+  ]
 };
 
 export default categories;

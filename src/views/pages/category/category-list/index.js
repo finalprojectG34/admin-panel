@@ -1,5 +1,6 @@
 // material-ui
 import {
+  Alert,
   Paper,
   Table,
   TableBody,
@@ -7,14 +8,13 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Typography,
-  Alert,
+  Typography
 } from '@mui/material';
 import { HighlightOffOutlined } from '@mui/icons-material';
 
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
-import { useQuery, useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { GET_ALL_CATEGORIES } from '../../../../apollo/query/category_queries';
 import { DELETE_CATEGORY } from '../../../../apollo/mutation/category_mutation';
 import Loader from '../../../../ui-component/Loader';
@@ -27,49 +27,49 @@ const CategoryListPage = () => {
 
   if (error)
     return (
-      <Alert variant="outlined" severity="error">
+      <Alert variant='outlined' severity='error'>
         {error}
       </Alert>
     );
   if (loading) return <Loader />;
   return (
-    <MainCard title="Categories List">
-      <Typography variant="body2">
+    <MainCard title='Categories List'>
+      <Typography variant='body2'>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650, bgcolor: '#00000021' }}>
             <TableHead>
               <TableRow>
                 <TableCell>Number</TableCell>
-                <TableCell align="right">Name</TableCell>
-                <TableCell align="right">Description</TableCell>
-                <TableCell align="right">Delete</TableCell>
+                <TableCell align='right'>Name</TableCell>
+                <TableCell align='right'>Description</TableCell>
+                <TableCell align='right'>Delete</TableCell>
               </TableRow>
             </TableHead>
-            <TableBody>
+            <TableBody data-cy='category-list'>
               {data.getAllCategories?.map((category, index) =>
                 !category ? null : (
                   <TableRow
                     key={category.id}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                   >
-                    <TableCell component="th" scope="row">
+                    <TableCell component='th' scope='row'>
                       {index + 1}
                     </TableCell>
-                    <TableCell align="right">{category.name}</TableCell>
-
-                    <TableCell align="right">{category.description}</TableCell>
-                    <TableCell align="right">
+                    <TableCell align='right'>{category.name}</TableCell>
+                    <TableCell align='right'>{category.description}</TableCell>
+                    <TableCell align='right'>
                       <HighlightOffOutlined
-                        color="error"
+                        data-cy='delete-category'
+                        color='error'
                         sx={{ cursor: 'pointer' }}
                         onClick={() => {
                           deleteCategory({
                             variables: {
-                              deleteCategoryId: category.id,
+                              deleteCategoryId: category.id
                             },
                             update: cache => {
                               cache.evict({ id: 'Category:' + category.id });
-                            },
+                            }
                           });
                         }}
                       />

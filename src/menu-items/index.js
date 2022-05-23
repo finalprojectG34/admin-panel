@@ -6,7 +6,7 @@ import companies from './companies';
 // ==============================|| MENU ITEMS ||============================== //
 
 const menuItems = {
-    items: [dashboard, users, companies, categories]
+  items: [dashboard, users, companies, categories]
 };
 
 export default menuItems;
