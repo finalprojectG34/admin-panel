@@ -6,8 +6,6 @@ import { Form, Formik } from 'formik';
 import MainCard from 'ui-component/cards/MainCard';
 import { InputField } from 'ui-component/input/InputField';
 
-// ==============================|| SAMPLE PAGE ||============================== //
-
 const UserCreatePage = () => {
   return (
     <MainCard title="Create User">

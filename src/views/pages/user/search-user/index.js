@@ -1,17 +1,17 @@
 // material-ui
 import {
+  Alert,
+  Box,
   Button,
+  Card,
+  CardContent,
   FormControl,
   FormControlLabel,
   FormLabel,
   Radio,
   RadioGroup,
   TextField,
-  Typography,
-  Box,
-  Alert,
-  Card,
-  CardContent,
+  Typography
 } from '@mui/material';
 import { useState } from 'react';
 
@@ -33,49 +33,49 @@ const UserSearchPage = () => {
   };
   if (error)
     return (
-      <Alert variant="outlined" severity="error">
+      <Alert variant='outlined' severity='error'>
         {error}
       </Alert>
     );
   if (loading) return <Loader />;
   return (
-    <MainCard title="Search User">
-      <Typography variant="body2">
+    <MainCard title='Search User'>
+      <Typography variant='body2'>
         <Box>
           <Box mb={4}>
-            <FormControl component="fieldset">
-              <FormLabel component="legend">Search By</FormLabel>
+            <FormControl component='fieldset'>
+              <FormLabel component='legend'>Search By</FormLabel>
               <RadioGroup
-                aria-label="Search By"
-                defaultValue="id"
-                name="radio-buttons-group"
+                aria-label='Search By'
+                defaultValue='id'
+                name='radio-buttons-group'
                 value={value}
                 onChange={handleChange}
               >
-                <FormControlLabel value="id" control={<Radio />} label="Id" />
+                <FormControlLabel value='id' control={<Radio />} label='Id' />
                 <FormControlLabel
-                  value="firstName"
+                  value='firstName'
                   control={<Radio />}
-                  label="First Name"
+                  label='First Name'
                 />
               </RadioGroup>
             </FormControl>
             <Box sx={{ display: 'flex' }}>
               <TextField
                 label={value}
-                variant="standard"
+                variant='standard'
                 value={text}
                 onChange={e => setText(e.target.value)}
                 sx={{ mr: 2 }}
               />
 
               <Button
-                variant="outlined"
+                variant='outlined'
                 onClick={() => {
                   getUser({
                     variables: {
-                      getUserByIdId: text,
-                    },
+                      getUserByIdId: text
+                    }
                   });
                 }}
               >
