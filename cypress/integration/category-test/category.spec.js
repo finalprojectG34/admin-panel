@@ -72,12 +72,12 @@ describe('example to-do app', () => {
 
   it('displays display list of categories', () => {
     cy.visit('http://localhost:3000/category/list');
-    // cy.get('[data-cy=category-list]').should('have.length', 2);
+    cy.wait(5000);
+    cy.get('[data-cy=category-list-row]').should("have.length.at.least", 2);
   });
 
   it('delete the first category item', () => {
-    cy.wait(5000);
     cy.get('[data-cy=delete-category]').first()
-      .click({ multiple: true });
+      .click();
   });
 });
