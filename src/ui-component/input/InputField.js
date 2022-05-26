@@ -7,7 +7,7 @@ export const InputField = ({
                              type,
                              value,
                              onChange,
-  dataCy
+                             dataCy
                            }) => {
   return (
     <TextField

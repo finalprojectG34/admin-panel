@@ -51,6 +51,7 @@ const CategoryListPage = () => {
                   <TableRow
                     key={category.id}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                    data-cy='category-list-row'
                   >
                     <TableCell component='th' scope='row'>
                       {index + 1}
